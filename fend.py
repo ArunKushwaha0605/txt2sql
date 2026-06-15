@@ -11,6 +11,9 @@ st.set_page_config(
     layout="wide"
 )
 
+st.header("Start Querying your DB....")
+
+
 if "agent" not in st.session_state:
     st.session_state.agent = None
 
@@ -66,6 +69,34 @@ with st.sidebar:
     """, unsafe_allow_html=True)
 
 
+    # st.sidebar.markdown("### 🗄️ Database Type")
+
+    # st.radio(
+    #     "Select Database",
+    #     [
+    #         "MySQL",
+    #         "PostgreSQL (Coming Soon)",
+    #         "SQL Server (Coming Soon)",
+    #         "SQLite (Coming Soon)"
+    #     ],
+    #     index=0,
+    #     disabled=True
+    # )
+
+    with st.sidebar.expander("🗄️ Database Type (coming soon..)"):
+         st.radio(
+            "Select Database",
+            [
+                "MySQL",
+                "PostgreSQL",
+                "SQL Server",
+                "SQLite"
+            ],
+            index=0,
+            disabled=True
+        ) 
+
+
     with st.expander("Connection"):
         
         host=st.text_input(
@@ -77,14 +108,16 @@ with st.sidebar:
             value="3306"
         )
         user = st.text_input(
-            "User"
+            "User",
+            value="root"
         )
         password = st.text_input(
             "Password",
             type="password"
         )
         database = st.text_input(
-            "Database"
+            "Database",
+            value='world'
         )
 
         if st.button("Connect"):
@@ -119,11 +152,12 @@ with st.sidebar:
 
     with st.expander("💡 Sample Questions"):
         samples = [
-        "How many students are enrolled in GenAI?",
-        "Which student got the highest placement package?",
-        "List all students from Bangalore",
-        "What is the average package by course?",
-        "Show total revenue from each course",
+        "Fetch the independence year of Angola?",
+        "What is the Life Expectancy in India?",
+        "Fetch the language of Azerbaijan.",
+        "Fetch the language of Azerbaijan using joins.",
+        "Fetch the highest populated district of Argentina and with number of population?",
+
         ]
         for q in samples:
                 if st.session_state.agent:

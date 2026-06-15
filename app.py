@@ -52,7 +52,7 @@ class TextToSQLAgent:
             model= "qwen/qwen3-32b",
             temperature=0.0,
             reasoning_format="hidden",
-            max_tokens=600,
+            max_tokens=1000,
             verbose=False
             )
         self.app = self._build_graph()
